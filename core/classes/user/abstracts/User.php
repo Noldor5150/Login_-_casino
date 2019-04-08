@@ -4,7 +4,7 @@ namespace Core\User\Abstracts;
 
 abstract class User {
 
-   protected $data;
+    protected $data;
 
     const ORIENTATION_GAY = 'g';
     const ORIENTATION_STRAIGHT = 's';
