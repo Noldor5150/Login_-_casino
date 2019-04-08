@@ -66,9 +66,12 @@ Class FileDB {
     public function getRowColumn($table, $row_id, $column_id) {
         return $this->data[$table][$row_id][$column_id];
     }
-
+    
+    /**
+     * checks row if exists.
+     */
     public function rowExists($table, $row_id) {
-        return isset($this->$this->data[$table][$row_id]) ? true : false;
+        return isset($this->$this->data[$table][$row_id]);
     }
 
     /**
