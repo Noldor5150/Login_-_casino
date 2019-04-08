@@ -67,6 +67,10 @@ Class FileDB {
         return $this->data[$table][$row_id][$column_id];
     }
 
+    public function rowExists($table, $row_id) {
+        return isset($this->$this->data[$table][$row_id]) ? true : false;
+    }
+
     /**
      * Loads data from database, function used on constructor.
      */
