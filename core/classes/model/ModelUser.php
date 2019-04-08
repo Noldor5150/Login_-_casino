@@ -13,35 +13,36 @@ Class ModelUser {
         $this->db = $db;
     }
 
-    public function load($id) {
-        $data_row = $this->db->getRow($this->table_name, $id);
+    public function load($email) {
+        $data_row = $this->db->getRow($this->table_name, $email);
         if ($data_row) {
             return new \Core\User\User($data_row);
         }
     }
 
-    public function insert($id, \Core\User\User $user) {
-        if (!$this->db->rowExists($this->table_name, $id)) {
-            $this->db->setRow($this->table_name, $id, $user->getData());
+    public function insert(\Core\User\User $user) {
+        if (!$this->exists($user)) {
+            $this->db->setRow($this->table_name,$user->getMail(),$user->getData() );
             $this->db->save();
             
             return true;
         }
     }
 
-    public function update($id, \Core\User\User $user) {
-        if ($this->db->rowExists($this->table_name, $id)) {
-            $this->db->setRow($this->table_name, $id, $user->getData());
+    public function update(\Core\User\User $user) {
+        if ($this->exists($user)) {
+            $this->db->setRow($this->table_name,$user->getMail(),$user->getData() );
             $this->db->save();
             
             return true;
         }
     }
 
-    public function delete($id) {
-        if ($this->db->rowExists($this->table_name, $id)) {
-            $this->db->deleteRow($this->table_name, $id);
+    public function delete(\Core\User\User $user) {
+        if ($this->exists($user)) {
+            $this->db->setRow($this->table_name,$user->getMail(),$user->getData() );
             $this->db->save();
+            
             
             return true;
         }
@@ -71,5 +72,11 @@ Class ModelUser {
         
         return 0;
     }
-
+    
+    
+    public function exists(\Core\User\User $user){
+        return $this->db->rowExists($this->table_name, $user->getEmail());
+    }
+    
+    
 }
