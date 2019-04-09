@@ -36,11 +36,18 @@ class Session extends \Core\User\Abstracts\Session {
 
     
     public function loginViaCookie() {
-        
+        if (isset($_SESSION['email']) && isset($_SESSION['password'])) {
+            return $this->login($_SESSION['email'], $_SESSION['password']);
+        }
+        return self::LOGIN_ERR_CREDENTIALS;
     }
 
-    public function logout() {
-        
+       public function logout() {
+        $_SESSION = [];
+        setcookie(session_name(),  '', time() - 3600);
+        session_destroy();
+        $this->is_logged_in = false;
+        $this->user = null;
     }
 
 }
