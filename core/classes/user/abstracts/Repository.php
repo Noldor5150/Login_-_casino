@@ -12,5 +12,5 @@ abstract class Repository extends \Core\Model\ModelUser {
      * returniname REGISTER_SUCCESS
      * Jeigu egzistuoja, returniname REGISTER_ERR_EXISTS
      */
-    abstract public function register(User $user);
+    abstract public function register(\Core\User\User $user);
 }

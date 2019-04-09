@@ -67,6 +67,6 @@ abstract class Session {
     /**
      * Return'inti user'io objektą
      */
-    abstract public function getUser():User;
+    abstract public function getUser();
     
 }
