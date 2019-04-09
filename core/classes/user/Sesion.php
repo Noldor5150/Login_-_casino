@@ -20,7 +20,7 @@ class Session extends \Core\User\Abstracts\Session {
     public function login($email, $password): int {
         $user = $this->repo->load($email);
         if ($user) {
-            if ($user->getEmail() == $email && $user->getPassword() == $password) {
+            if ($user->getPassword() === $password) {
                 if ($user->getIsActive()) {
                     $_SESSION['email'] = $email;
                     $_SESSION['password'] = $password;
