@@ -17,7 +17,7 @@ class Session extends \Core\User\Abstracts\Session {
         return $this->is_logged_in;
     }
 
-    public function login($email, $password): int {
+       public function login($email, $password): int {
         $user = $this->repo->load($email);
         if ($user) {
             if ($user->getPassword() === $password) {
@@ -25,16 +25,16 @@ class Session extends \Core\User\Abstracts\Session {
                     $_SESSION['email'] = $email;
                     $_SESSION['password'] = $password;
                     $this->user = $user;
-
                     return self::LOGIN_SUCCESS;
-                } else {
-                    return self::LOGIN_ERR_NOT_ACTIVE;
                 }
+                return self::LOGIN_ERR_NOT_ACTIVE;
             }
         }
         return self::LOGIN_ERR_CREDENTIALS;
     }
 
+
+    
     public function loginViaCookie() {
         
     }
