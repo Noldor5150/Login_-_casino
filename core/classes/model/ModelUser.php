@@ -22,7 +22,7 @@ Class ModelUser {
 
     public function insert(\Core\User\User $user) {
         if (!$this->exists($user)) {
-            $this->db->setRow($this->table_name,$user->getMail(),$user->getData() );
+            $this->db->setRow($this->table_name,$user->getEmail(),$user->getData());
             $this->db->save();
             
             return true;

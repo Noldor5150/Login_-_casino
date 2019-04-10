@@ -65,7 +65,7 @@ class User extends Abstracts\User {
         $this->setPhoto($data['photo'] ?? '');
         $this->setAccountType($data['account_type'] ?? null);
         $this->setIsActive($data['is_active'] ?? null);
-        $this->getPassword($data['password'] ?? '');
+        $this->setPassword($data['password'] ?? '');
     }
 
     public function getData() {

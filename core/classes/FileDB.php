@@ -71,7 +71,7 @@ Class FileDB {
      * checks row if exists.
      */
     public function rowExists($table, $row_id) {
-        return isset($this->$this->data[$table][$row_id]);
+        return isset($this->data[$table][$row_id]);
     }
 
     /**
