@@ -20,7 +20,8 @@ $form = [
             'placeholder' => 'email@gmail.com',
             'validate' => [
                 'validate_not_empty',
-                'validate_email'
+                'validate_email',
+                'validate_email_exists'
             ]
         ],
         'password' => [
@@ -31,8 +32,8 @@ $form = [
                 'validate_not_empty'
             ]
         ],
-        'password_again' => [
-            'label' => 'Password again',
+        'password_repeat' => [
+            'label' => 'Password repeat',
             'type' => 'password',
             'placeholder' => '********',
             'validate' => [
@@ -106,7 +107,7 @@ $form = [
 ];
 
 function validate_password(&$safe_input, &$form) {
-    if ($safe_input['password'] === $safe_input['password_again']) {
+    if ($safe_input['password'] === $safe_input['password_repeat']) {
         return true;
     } else {
         $form['error_msg'] = 'Jobans/a tu buhurs/gazele passwordai nesutampa!';
@@ -164,13 +165,15 @@ if (!empty($_POST)) {
 ?>
 <html>
     <head>
-        <title>OOP</title>
-        <link rel="stylesheet" href="/css/style.css">
+        <title>Register</title>
+        <link rel="stylesheet" href="css/style.css">
     </head>
     <body>
-        <?php require '../core/views/form.php'; ?>
-        <?php if (isset($success_msg)): ?>
-            <h3><?php print $success_msg; ?></h3>
-<?php endif; ?>
+        <div class="register">
+            <?php require '../core/views/form.php'; ?>
+            <?php if (isset($success_msg)): ?>
+                <h3><?php print $success_msg; ?></h3>
+            <?php endif; ?>
+        </div>
     </body>
 </html>

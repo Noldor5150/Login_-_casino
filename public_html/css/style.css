@@ -58,7 +58,7 @@
 form {
     display: flex;
     margin: 5px;
-    flex-direction: row;
+    flex-direction: column;
     justify-content: center;
 }
 
@@ -66,4 +66,8 @@ form input {
     width: 150px;
     height: 30px;
     margin: 0 10px;
+}
+.register{
+    display: flex;
+    flex-direction: column;
 }
