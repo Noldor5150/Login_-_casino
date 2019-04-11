@@ -180,3 +180,13 @@ function validate_email_exists($field_input, &$field, &$safe_input) {
         ]);
     }
 }
+
+function validate_selector($field_input, &$field, &$safe_input) {
+    if (array_key_exists($field_input, $field['options'])) {
+        return true;
+    } else {
+        $field['error_msg'] = strtr('Jobans/a tu buhurs/gazele, '
+                . 'nes @field yra neteisingas', ['@field' => $field['label']
+        ]);
+    }
+}

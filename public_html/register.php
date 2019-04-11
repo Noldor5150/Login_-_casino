@@ -64,11 +64,12 @@ $form = [
         ],
         'gender' => [
             'label' => 'Gender',
-            'type' => 'select',
+            'type' => 'text',
             'placeholder' => '',
             'options' => Core\User\Abstracts\User::getGenderOptions(),
             'validate' => [
-                'validate_not_empty'
+                'validate_not_empty',
+                'validate_selector'
             ]
         ],
         'orientation' => [
@@ -77,7 +78,8 @@ $form = [
             'placeholder' => '',
             'options' => Core\User\Abstracts\User::getOrientationOptions(),
             'validate' => [
-                'validate_not_empty'
+                'validate_not_empty',
+                'validate_selector'
             ],
         ],
         'photo' => [

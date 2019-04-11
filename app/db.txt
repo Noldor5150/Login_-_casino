@@ -1,1 +1,1 @@
-{"users":{"emailas@pizdabol.lt":{"username":"pyzdukas","email":"emailas@pizdabol.lt","full_name":"paulius ra","age":8,"gender":"m","orientation":"g","photo":"uploads\/0.20808400 1554886022-appointment.jpg","account_type":1,"is_active":true,"password":"123456"}}}
+{"users":{"emailas@pizdabol.lt":{"username":"pyzdukas","email":"emailas@pizdabol.lt","full_name":"paulius ra","age":5,"gender":"m","orientation":"g","photo":"uploads\/0.17291100 1554968412-carrepair-img-11.png","account_type":1,"is_active":true,"password":"123"}}}
