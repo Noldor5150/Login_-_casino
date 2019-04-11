@@ -2,7 +2,7 @@
 
 namespace Core;
 
-class Cookie extends Abstracts\Cookie {
+class Cookie  {
 
     public function __construct(string $name) {
         $this->name = $name;
@@ -29,7 +29,7 @@ class Cookie extends Abstracts\Cookie {
         return [];
     }
 
-    public function save(array $data, int $expires_in = 3600): void {
+    public function save(array $data, int $expires_in = 3600) {
         setcookie($this->name, json_encode($data), time() + $expires_in);
     }
 

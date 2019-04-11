@@ -2,9 +2,9 @@
 
 namespace Core\User;
 
-class Session extends \Core\User\Abstracts\Session {
+class Session extends \Core\User\Abstracts\Session{
 
-    public function __construct(\Core\Modules\User\Repository $repo) {
+    public function __construct(\Core\User\Repository $repo) {
         $this->repo = $repo;
         return $this->is_logged_in = false;
         session_start();
