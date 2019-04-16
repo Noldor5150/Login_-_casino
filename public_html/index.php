@@ -40,6 +40,12 @@ if (!empty($_POST)) {
         $player->setBalance(intval($safe_input['money']));
     }
 }
+$connection = new \Core\Database\Connection([
+    'host' => 'localhost',
+    'user' => 'root',
+    'password' => 'sindar5150'
+        ]);
+$connection->connect();
 ?>
 <html>
     <head>

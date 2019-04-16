@@ -64,7 +64,7 @@ $form = [
         ],
         'gender' => [
             'label' => 'Gender',
-            'type' => 'text',
+            'type' => 'select',
             'placeholder' => '',
             'options' => Core\User\Abstracts\User::getGenderOptions(),
             'validate' => [
