@@ -90,17 +90,29 @@ $pdo = $connection->getPDO();
 //$arr = $query->fetchAll(PDO::FETCH_ASSOC);
 //var_dump($arr);
 
-$sql = strtr('SELECT * FROM @db . @users WHERE (@gender = @f) AND (@age = @value)',[
+//$sql = strtr('SELECT * FROM @db . @users WHERE (@gender = @f) AND (@age = @value)',[
+//    '@db' => Core\Database\SQLBuilder::schema('my_db'),
+//    '@users' => Core\Database\SQLBuilder::table('users'),
+//    '@gender' => Core\Database\SQLBuilder::column('gender'),
+//    '@f' => Core\Database\SQLBuilder::value('f'),
+//    '@age' => Core\Database\SQLBuilder::column('age'),
+//    '@value' => Core\Database\SQLBuilder::value('26')
+//]);
+// $query = $pdo->query($sql);
+// $arr = $query->fetchAll(PDO::FETCH_ASSOC);
+//var_dump($arr);
+
+$sql = strtr('UPDATE @db . @users SET @gender = @m, @age = @value',[
     '@db' => Core\Database\SQLBuilder::schema('my_db'),
     '@users' => Core\Database\SQLBuilder::table('users'),
     '@gender' => Core\Database\SQLBuilder::column('gender'),
-    '@f' => Core\Database\SQLBuilder::value('f'),
+    '@m' => Core\Database\SQLBuilder::value('m'),
     '@age' => Core\Database\SQLBuilder::column('age'),
-    '@value' => Core\Database\SQLBuilder::value('26')
+    '@value' => Core\Database\SQLBuilder::value(rand(0 ,100))
 ]);
- $query = $pdo->query($sql);
- $arr = $query->fetchAll(PDO::FETCH_ASSOC);
-var_dump($arr);
+
+
+ $query = $pdo->exec($sql);
 
 ?>
 <html>
