@@ -112,20 +112,36 @@ $pdo = $connection->getPDO();
 // $query = $pdo->exec($sql);
 
 $row = [
-    'email' => 'zanuda@yahoo.com ',
-    'password' => '123456',
-    'full_name' => 'Begemotas Bonifacijus ',
+    'email' => 'pizdabol@jebat.com ',
+    'password' => '66666',
+    'full_name' => 'Brtalomejus Freakas ',
     'age' => 666,
     'gender' => 'm',
     'photo' => 'somewhere/far/beyond'
 ];
+//$sql = strtr('INSERT INTO @db . @users (@columns) VALUES (@values)',[
+//    '@db' => Core\Database\SQLBuilder::schema('my_db'),
+//    '@users' => Core\Database\SQLBuilder::table('users'),
+//    '@columns' => Core\Database\SQLBuilder::columns(array_keys($row)),
+//    '@values' => Core\Database\SQLBuilder::values(array_values($row))
+//]);
 $sql = strtr('INSERT INTO @db . @users (@columns) VALUES (@values)',[
     '@db' => Core\Database\SQLBuilder::schema('my_db'),
     '@users' => Core\Database\SQLBuilder::table('users'),
     '@columns' => Core\Database\SQLBuilder::columns(array_keys($row)),
-    '@values' => Core\Database\SQLBuilder::values(array_values($row))
+    '@values' => Core\Database\SQLBuilder::binds(array_keys($row))
 ]);
-$query = $pdo->exec($sql);
+$query = $pdo->prepare($sql);
+
+var_dump($sql);
+//$query -> bindParam(':email', $row['email'], PDO::PARAM_STR);
+
+
+foreach ($row  as $column => $value) {
+        $query->bindValue(Core\Database\SQLBuilder::bind($column), $value);
+    }
+    $query->execute();
+
 ?>
 <html>
     <head>

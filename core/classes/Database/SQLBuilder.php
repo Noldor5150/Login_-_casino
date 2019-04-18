@@ -75,7 +75,7 @@ class SQLBuilder extends \Core\Database\Abstracts\SQLBuilder {
             $column = self::bind($column);
         }
 
-        return self::columns($column_array);
+         return implode(', ', $column_array);
     }
 
     /**
