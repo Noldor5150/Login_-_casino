@@ -45,7 +45,7 @@ $connection = new \Core\Database\Connection([
     'user' => 'root',
     'password' => 'sindar5150'
         ]);
-//$pdo = $connection->getPDO();
+$pdo = $connection->getPDO();
 //$query = $pdo->prepare('INSERT INTO `my_db`.`users` '
 //        . '(`email`, `password`, `full_name`, `age`, `gender`, `photo`)'
 //        . 'VALUES(:email, :pass, :full_name, :age, :gender, :photo)');
@@ -64,8 +64,7 @@ $connection = new \Core\Database\Connection([
 //$query->bindParam(':gender', $credentials['gender'], PDO::PARAM_STR);
 //$query->bindParam(':photo', $credentials['photo'], PDO::PARAM_STR);
 //$query->execute();
-
-$pdo = $connection->getPDO();
+//$pdo = $connection->getPDO();
 //$query = $pdo->query('SELECT * FROM `my_db`.`users`');
 //$users = [];
 //
@@ -76,20 +75,19 @@ $pdo = $connection->getPDO();
 //        $row['gender'],
 //        $row['age']
 //    ];
-    /*
-    $gender = $row['gender'];
-    
-    if ($last_gender == $gender && $gender == 'f') {
-        break;
-    } else {
-        $last_gender = $gender;
-        $users[] = $row;
-    }*/
+/*
+  $gender = $row['gender'];
+
+  if ($last_gender == $gender && $gender == 'f') {
+  break;
+  } else {
+  $last_gender = $gender;
+  $users[] = $row;
+  } */
 //}
 //$query = $pdo->query("SELECT * FROM `my_db`.`users` WHERE (`gender`='f') AND (`age`='26')");
 //$arr = $query->fetchAll(PDO::FETCH_ASSOC);
 //var_dump($arr);
-
 //$sql = strtr('SELECT * FROM @db . @users WHERE (@gender = @f) AND (@age = @value)',[
 //    '@db' => Core\Database\SQLBuilder::schema('my_db'),
 //    '@users' => Core\Database\SQLBuilder::table('users'),
@@ -101,19 +99,33 @@ $pdo = $connection->getPDO();
 // $query = $pdo->query($sql);
 // $arr = $query->fetchAll(PDO::FETCH_ASSOC);
 //var_dump($arr);
+//$sql = strtr('UPDATE @db . @users SET @gender = @m, @age = @value',[
+//    '@db' => Core\Database\SQLBuilder::schema('my_db'),
+//    '@users' => Core\Database\SQLBuilder::table('users'),
+//    '@gender' => Core\Database\SQLBuilder::column('gender'),
+//    '@m' => Core\Database\SQLBuilder::value('m'),
+//    '@age' => Core\Database\SQLBuilder::column('age'),
+//    '@value' => Core\Database\SQLBuilder::value(rand(0 ,100))
+//]);
+//
+//
+// $query = $pdo->exec($sql);
 
-$sql = strtr('UPDATE @db . @users SET @gender = @m, @age = @value',[
+$row = [
+    'email' => 'zanuda@yahoo.com ',
+    'password' => '123456',
+    'full_name' => 'Begemotas Bonifacijus ',
+    'age' => 666,
+    'gender' => 'm',
+    'photo' => 'somewhere/far/beyond'
+];
+$sql = strtr('INSERT INTO @db . @users (@columns) VALUES (@values)',[
     '@db' => Core\Database\SQLBuilder::schema('my_db'),
     '@users' => Core\Database\SQLBuilder::table('users'),
-    '@gender' => Core\Database\SQLBuilder::column('gender'),
-    '@m' => Core\Database\SQLBuilder::value('m'),
-    '@age' => Core\Database\SQLBuilder::column('age'),
-    '@value' => Core\Database\SQLBuilder::value(rand(0 ,100))
+    '@columns' => Core\Database\SQLBuilder::columns(array_keys($row)),
+    '@values' => Core\Database\SQLBuilder::values(array_values($row))
 ]);
-
-
- $query = $pdo->exec($sql);
-
+$query = $pdo->exec($sql);
 ?>
 <html>
     <head>
@@ -126,14 +138,14 @@ $sql = strtr('UPDATE @db . @users SET @gender = @m, @age = @value',[
             <a href="slot5x3.php">PLAY FOR REAL MEN</a>
         </nav>
         <h1>P-OOPINIGU CASINO</h1>
-        <?php if ($cookie->exists()): ?>
+<?php if ($cookie->exists()): ?>
             <h2>Balansas: <?php print $player->getBalance(); ?>$</h2>
         <?php endif; ?>
         <div class="container">
-            <?php require '../core/views/form.php'; ?>
+        <?php require '../core/views/form.php'; ?>
         </div>
-        <?php foreach ($users as $column): ?>
-            <?php foreach ($column as $field): ?>
+            <?php foreach ($users as $column): ?>
+                <?php foreach ($column as $field): ?>
                 <div><?php print $field; ?></div>
             <?php endforeach; ?>
         <?php endforeach; ?>
