@@ -66,16 +66,16 @@ $connection = new \Core\Database\Connection([
 //$query->execute();
 
 $pdo = $connection->getPDO();
-$query = $pdo->query('SELECT * FROM `my_db`.`users`');
-$users = [];
-
-$last_gender = '';
-while ($row = $query->fetch(PDO::FETCH_LAZY)) {
-    $gender = $row['gender'];
-    $users[] = [
-        $row['gender'],
-        $row['age']
-    ];
+//$query = $pdo->query('SELECT * FROM `my_db`.`users`');
+//$users = [];
+//
+//$last_gender = '';
+//while ($row = $query->fetch(PDO::FETCH_LAZY)) {
+//    $gender = $row['gender'];
+//    $users[] = [
+//        $row['gender'],
+//        $row['age']
+//    ];
     /*
     $gender = $row['gender'];
     
@@ -85,7 +85,22 @@ while ($row = $query->fetch(PDO::FETCH_LAZY)) {
         $last_gender = $gender;
         $users[] = $row;
     }*/
-}
+//}
+//$query = $pdo->query("SELECT * FROM `my_db`.`users` WHERE (`gender`='f') AND (`age`='26')");
+//$arr = $query->fetchAll(PDO::FETCH_ASSOC);
+//var_dump($arr);
+
+$sql = strtr('SELECT * FROM @db . @users WHERE (@gender = @f) AND (@age = @value)',[
+    '@db' => Core\Database\SQLBuilder::schema('my_db'),
+    '@users' => Core\Database\SQLBuilder::table('users'),
+    '@gender' => Core\Database\SQLBuilder::column('gender'),
+    '@f' => Core\Database\SQLBuilder::value('f'),
+    '@age' => Core\Database\SQLBuilder::column('age'),
+    '@value' => Core\Database\SQLBuilder::value('26')
+]);
+ $query = $pdo->query($sql);
+ $arr = $query->fetchAll(PDO::FETCH_ASSOC);
+var_dump($arr);
 
 ?>
 <html>
