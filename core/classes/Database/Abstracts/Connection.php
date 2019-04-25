@@ -70,7 +70,7 @@ abstract class Connection {
     public function setCredentials($creds) {
       $this->setCredentialHost($creds['host']);
       $this->setCredentialUser($creds['user']);
-      $this->setCredentialPass($creds['password']);
+      $this->setCredentialPass($creds['pass']);
     }
 
 }
